@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Messaging</string>
+    <string name="sms">SMS</string>
+    <string name="email">Email</string>
+    <string name="send_message">Send Message</string>
+    <string name="import_contacts">Import Contacts</string>
+    <string name="compose_message">Compose Message</string>
 </resources>
