@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <!-- Light theme colors -->
+    <color name="primary">#d42325</color>
+    <color name="primary_variant">#efe31e</color>
+    <color name="primary_dark">#efe31e</color>
+    <color name="primary_light">#d42325</color>
+
+    <color name="secondary">#03DAC5</color>
+    <color name="secondary_variant">#018786</color>
+    <color name="secondary_dark">#018786</color>
+    <color name="secondary_light">#84FFFF</color>
+
+    <color name="tertiary">#FFFFFF</color> <!-- Corrected from #ffff -->
+    <color name="tertiary_light">#FFFFFF</color> <!-- Corrected from #fff -->
+
+    <color name="background">#FFFFFF</color> <!-- This is your light theme "skin color" -->
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#B00020</color>
+
+    <!-- App Skin / General Background Colors -->
+    <color name="app_background_light">#F8F8F8</color> <!-- A very light gray for light theme skin -->
+    <color name="app_background_dark">#1F1F1F</color>  <!-- A dark gray for dark theme skin -->
+
+    <!-- Basic colors -->
     <color name="white">#FFFFFF</color>
-    <color name="primary">#3F51B5</color>
-    <color name="primary_dark">#303F9F</color>
-    <color name="primary_light">#C5CAE9</color>
-    <color name="accent">#FFC107</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="divider">#BDBDBD</color>
+    <color name="black">#000000</color>
+
+    <!-- Status colors -->
     <color name="success_color">#4CAF50</color>
     <color name="error_color">#F44336</color>
-    <color name="warning_color">#FFC107</color>
+    <color name="warning_color">#FF9800</color>
+    <color name="info_color">#2196F3</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#DE000000</color> <!-- 87% black -->
+    <color name="text_secondary">#99000000</color> <!-- 60% black -->
+    <color name="text_tertiary">#61000000</color> <!-- 38% black -->
+    <color name="text_disabled">#38000000</color> <!-- 22% black -->
+
+    <!-- Card colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_border">#E0E0E0</color>
+
+    <!-- Other UI elements -->
+    <color name="divider">#1F000000</color> <!-- 12% black -->
+    <color name="ripple">#33000000</color> <!-- 20% black -->
+
+    <!-- Dark Theme Colors (add these if not present) -->
+    <color name="background_dark">#121212</color> <!-- Example dark skin color -->
+    <color name="surface_dark">#1E1E1E</color> <!-- Example dark surface -->
+    <color name="error_dark">#CF6679</color>
+    <color name="text_primary_dark">#E0E0E0</color>
+    <color name="text_secondary_dark">#B3E0E0E0</color> <!-- 70% of text_primary_dark -->
+    <color name="text_tertiary_dark">#80E0E0E0</color> <!-- 50% of text_primary_dark -->
+    <color name="text_disabled_dark">#61E0E0E0</color> <!-- 38% of text_primary_dark -->
+    <color name="card_background_dark">#2C2C2C</color>
+    <color name="card_border_dark">#424242</color>
+    <color name="ripple_dark">#33FFFFFF</color> <!-- 20% white for dark ripple -->
 </resources>

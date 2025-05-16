@@ -5,4 +5,19 @@
     <string name="send_message">Send Message</string>
     <string name="import_contacts">Import Contacts</string>
     <string name="compose_message">Compose Message</string>
+
+    <!-- Navigation Strings -->
+    <string name="title_home">Home</string>
+    <string name="title_contacts">Contacts</string>
+    <string name="title_messages">Messages</string>
+    <string name="title_history">History</string>
+
+    <!-- Fragment Strings -->
+    <string name="hello_home_fragment">Welcome to your Dashboard</string>
+    <string name="hello_contacts_fragment">Manage your contacts</string>
+    <string name="hello_messages_fragment">Compose and send messages</string>
+    <string name="hello_history_fragment">View your message history</string>
+
+    <!-- Contact Count String -->
+    <string name="contact_count">%d contacts</string>
 </resources>

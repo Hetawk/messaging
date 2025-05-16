@@ -1,7 +1,73 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Messaging" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base dark theme -->
+    <style name="Theme.Messaging" parent="Theme.Material3.DayNight.NoActionBar"> <!-- Changed parent -->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary</item> <!-- Consider a darker primary for night mode
+        if needed -->
+        <item name="colorPrimaryVariant">@color/primary_variant</item> <!-- Adjust if needed -->
+        <item name="colorOnPrimary">@color/white</item> <!-- Text on primary buttons -->
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/secondary</item> <!-- Adjust if needed -->
+        <item name="colorSecondaryVariant">@color/secondary_variant</item> <!-- Adjust if needed -->
+        <item name="colorOnSecondary">@color/black</item> <!-- Text on secondary buttons/elements -->
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/background_dark</item> <!-- Use a dark background
+        color -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Background colors (android:colorBackground is your app "skin") -->
+        <item name="android:colorBackground">@color/app_background_dark</item>
+        <item name="colorSurface">@color/surface_dark</item> <!-- surface_dark can be a slightly
+        lighter gray than app_background_dark -->
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+        <item name="colorError">@color/error_dark</item> <!-- Define error_dark in colors.xml -->
+        <item name="colorOnError">@color/black</item>
+
+        <!-- Text appearance -->
+        <item name="android:textColorPrimary">@color/text_primary_dark</item>
+        <item name="android:textColorSecondary">@color/text_secondary_dark</item>
+        <item name="android:textColorTertiary">@color/text_tertiary_dark</item>
+        <item name="android:textColorHint">@color/text_disabled_dark</item>
+
+        <!-- Card styles -->
+        <item name="cardBackgroundColor">@color/card_background_dark</item> <!-- Define
+        card_background_dark -->
+        <item name="cardStrokeColor">@color/card_border_dark</item> <!-- Define card_border_dark -->
+
+
+        <!-- Ripple effect -->
+        <item name="colorControlHighlight">@color/ripple_dark</item> <!-- Define ripple_dark -->
+
+        <!-- Dialog properties -->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog.Dark</item>
+
+        <!-- Default Button Style -->
+        <item name="materialButtonStyle">@style/Widget.App.Button.Dark</item>
+    </style>
+
+    <!-- Custom Default Button Style for Dark Theme -->
+    <style name="Widget.App.Button.Dark" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary</item> <!-- Or a specific dark theme button color -->
+        <item name="android:textColor">@color/white</item>
+        <!-- <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.Button</item> -->
+    </style>
+
+    <!-- Dialog theme overlay for Dark Theme -->
+    <style name="ThemeOverlay.App.MaterialAlertDialog.Dark"
+        parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button.TextButton.Dialog.Dark</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.Button.TextButton.Dialog.Dark</item>
+    </style>
+
+    <!-- Button style for Dialogs in Dark Theme -->
+    <style name="Widget.App.Button.TextButton.Dialog.Dark"
+        parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/primary</item> <!-- Or a specific dark theme accent for
+        dialog buttons -->
     </style>
 </resources>

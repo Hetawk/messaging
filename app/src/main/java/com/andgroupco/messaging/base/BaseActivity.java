@@ -5,6 +5,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -15,23 +17,56 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void showError(String message) {
         Log.e(TAG, "Error: " + message);
-        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
-                .setBackgroundTint(getResources().getColor(R.color.error_color))
-                .show();
+        try {
+            View contentView = findViewById(android.R.id.content);
+            if (contentView != null && !isFinishing()) {
+                Snackbar.make(contentView, message, Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(getResources().getColor(R.color.error_color))
+                        .show();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to show error snackbar", e);
+            // Fallback to Toast if Snackbar fails
+            try {
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            } catch (Exception e2) {
+                Log.e(TAG, "Failed to show error toast", e2);
+            }
+        }
     }
 
     protected void showSuccess(String message) {
         Log.d(TAG, "Success: " + message);
-        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
-                .setBackgroundTint(getResources().getColor(R.color.success_color))
-                .show();
+        try {
+            View contentView = findViewById(android.R.id.content);
+            if (contentView != null && !isFinishing()) {
+                Snackbar.make(contentView, message, Snackbar.LENGTH_LONG)
+                        .setBackgroundTint(getResources().getColor(R.color.success_color))
+                        .show();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to show success snackbar", e);
+            // Fallback to Toast
+            try {
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            } catch (Exception e2) {
+                Log.e(TAG, "Failed to show success toast", e2);
+            }
+        }
     }
 
     public void copyToClipboard(String text, String label) {
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText(label, text);
-        clipboard.setPrimaryClip(clip);
-        showSuccess("Copied to clipboard");
+        try {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            if (clipboard != null && text != null) {
+                ClipData clip = ClipData.newPlainText(label, text);
+                clipboard.setPrimaryClip(clip);
+                showSuccess("Copied to clipboard");
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to copy to clipboard", e);
+            showError("Could not copy text");
+        }
     }
 
     @Override

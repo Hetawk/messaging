@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andgroupco.messaging.R;
 import com.andgroupco.messaging.base.BaseActivity;
 import com.andgroupco.messaging.models.Message;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder> {
-    private List<Message> messages;
+    private List<Message> messages = new ArrayList<>();
     private final Context context;
 
     public MessageListAdapter(Context context) {
@@ -68,8 +69,9 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                 .show();
     }
 
-    public void updateMessages(List<Message> messages) {
-        this.messages = messages;
+    // Fix the updateMessages method to specify Message type explicitly
+    public void updateMessages(List<Message> newMessages) {
+        this.messages = newMessages;
         notifyDataSetChanged();
     }
 
@@ -77,6 +79,4 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     public int getItemCount() {
         return messages != null ? messages.size() : 0;
     }
-
-    // Implement other required adapter methods
 }

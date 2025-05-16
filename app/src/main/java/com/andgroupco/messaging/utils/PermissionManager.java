@@ -27,6 +27,9 @@ public class PermissionManager {
             permissions.add(Manifest.permission.READ_MEDIA_IMAGES);
             permissions.add(Manifest.permission.READ_MEDIA_VIDEO);
             permissions.add(Manifest.permission.READ_MEDIA_AUDIO);
+
+            // Add notification permission for Android 13+
+            permissions.add(Manifest.permission.POST_NOTIFICATIONS);
         } else {
             permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
@@ -160,26 +163,65 @@ public class PermissionManager {
                 requiredPermissions.add(Manifest.permission.READ_CONTACTS);
                 break;
             case "STORAGE":
+                // Log which storage permission logic is being applied
+                Log.d(TAG, "Checking storage permissions for Android SDK: " + Build.VERSION.SDK_INT);
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    // Android 13+ uses granular media permissions
                     requiredPermissions.add(Manifest.permission.READ_MEDIA_IMAGES);
                     requiredPermissions.add(Manifest.permission.READ_MEDIA_VIDEO);
+                    Log.d(TAG, "Using Android 13+ (Tiramisu) permissions");
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    // Android 11-12 can use MANAGE_EXTERNAL_STORAGE for full access, but for most
+                    // cases
+                    // we should use Storage Access Framework instead of requesting broad
+                    // permissions
+                    // This permission requires special handling and isn't granted via normal
+                    // permission flow
+                    Log.d(TAG, "Using Android 11-12 (R+) - SAF approach recommended");
+
+                    // For file pickers, we don't really need storage permissions with SAF
+                    return true;
                 } else {
+                    // For Android 10 and below
                     requiredPermissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+                    requiredPermissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    Log.d(TAG, "Using Android 10 and below storage permissions");
+                }
+                break;
+            case "NOTIFICATIONS":
+                // Only request notification permission on Android 13+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    requiredPermissions.add(Manifest.permission.POST_NOTIFICATIONS);
+                    Log.d(TAG, "Checking notification permission for Android 13+");
+                } else {
+                    // Notifications don't require runtime permission before Android 13
+                    Log.d(TAG, "Notification permission not required for this Android version");
+                    return true;
                 }
                 break;
             default:
+                Log.w(TAG, "Unknown operation type: " + operation);
                 return false;
         }
 
+        // Check if permissions are already granted
+        boolean allGranted = true;
         List<String> permissionsToRequest = new ArrayList<>();
+
         for (String permission : requiredPermissions) {
-            if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
+            int result = ContextCompat.checkSelfPermission(activity, permission);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Permission not granted: " + permission);
+                allGranted = false;
                 permissionsToRequest.add(permission);
+            } else {
+                Log.d(TAG, "Permission already granted: " + permission);
             }
         }
 
-        if (!permissionsToRequest.isEmpty()) {
-            Log.d(TAG, "Requesting permissions for " + operation + ": " + permissionsToRequest);
+        if (!allGranted && !permissionsToRequest.isEmpty()) {
+            Log.d(TAG, "Requesting permissions: " + permissionsToRequest);
             ActivityCompat.requestPermissions(
                     activity,
                     permissionsToRequest.toArray(new String[0]),
@@ -187,6 +229,7 @@ public class PermissionManager {
             return false;
         }
 
+        Log.d(TAG, "All permissions granted for operation: " + operation);
         return true;
     }
 }

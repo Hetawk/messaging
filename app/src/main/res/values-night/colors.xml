@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark theme colors -->
+    <color name="primary">#d42325</color>
+    <color name="primary_variant">#efe31e</color>
+    <color name="primary_dark">#efe31e</color>
+    <color name="primary_light">#5F5757</color> <!-- Added missing color, lighter version for dark
+    theme -->
+
+    <color name="secondary">#03DAC6</color>
+    <color name="secondary_variant">#018786</color>
+    <color name="secondary_dark">#018786</color>
+    <color name="secondary_light">#70EFEF</color> <!-- Added missing color, adjusted for dark theme -->
+
+    <color name="tertiary">#d42325</color>
+    <color name="tertiary_light">#99CF6679</color>
+
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="error">#CF6679</color>
+
+    <!-- Basic colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Status colors for dark theme -->
+    <color name="success_color">#4CAF50</color>
+    <color name="error_color">#CF6679</color>
+    <color name="warning_color">#FFC107</color>
+    <color name="info_color">#03DAC6</color>
+
+    <!-- Text colors for dark theme -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color> <!-- 70% white -->
+    <color name="text_tertiary">#80FFFFFF</color> <!-- 50% white -->
+    <color name="text_disabled">#61FFFFFF</color> <!-- 38% white -->
+
+    <!-- Card colors -->
+    <color name="card_background">#2D2D2D</color>
+    <color name="card_border">#3D3D3D</color>
+
+    <!-- Other UI elements -->
+    <color name="divider">#1FFFFFFF</color> <!-- 12% white -->
+    <color name="ripple">#33FFFFFF</color> <!-- 20% white -->
+</resources>
